@@ -1,11 +1,10 @@
 import './Admin.css'
-import Header from '/src/components/layout/Header/Header'
-import Footer from '/src/components/layout/Footer/Footer'
+import Header from '/src/layout/Header/Header'
+import Footer from '/src/layout/Footer/Footer'
 
 export default function Admin() {
   return (
     <>
-      <Header />
       <main>
         <div className="titulo-descripcion">
           <h1 className="titulo-admin">Administrador</h1>
@@ -263,7 +262,6 @@ export default function Admin() {
           </table>
         </div>
       </main>
-      <Footer />
     </>
   )
 }

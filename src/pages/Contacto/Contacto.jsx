@@ -1,12 +1,9 @@
-import './Contacto.css'
-import Header from '/src/components/layout/Header/Header'
-import Footer from '/src/components/layout/Footer/Footer'
+import './Contacto.css';
 
 export default function Contacto() {
   return (
     <>
-      <Header />
-      <main>
+      <section className="section-contacto">
         <div className="titulo-form">
           <h1>Contactate con nosotros</h1>
         </div>
@@ -72,8 +69,7 @@ export default function Contacto() {
             />
           </div>
         </div>
-      </main>
-      <Footer />
+      </section>
     </>
   )
 }

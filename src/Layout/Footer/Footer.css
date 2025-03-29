@@ -91,3 +91,21 @@
 
     }
 }
+
+@media screen and (width > 768px) {
+    .main-footer {
+        display: flex;
+        align-items: center;
+
+        section {
+            flex: 1;
+            border: none;
+            border-right: 1px solid var(--lighter-color);
+            height: 135px;
+        }
+
+        .footer-info {
+            border-right: none;
+        }
+    }
+}

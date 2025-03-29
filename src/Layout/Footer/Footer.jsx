@@ -1,4 +1,6 @@
+import {faFaceAngry, faICursor } from '@fortawesome/free-solid-svg-icons';
 import './Footer.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 export default function Footer() {
@@ -10,10 +12,10 @@ export default function Footer() {
     </div>
     <div className="iconos-social">
       <div className="icono-ig">
-        <i className="fa-brands fa-square-instagram icono" /> <p>@instagram</p>
+        <FontAwesomeIcon icon={faICursor} className="fa-brands fa-square-instagram icono" /> <p>@instagram</p>
       </div>
       <div className="icono-fb">
-        <i className="fa-brands fa-facebook icono" /> <p>@facebook</p>
+        <FontAwesomeIcon icon={faFaceAngry} className="fa-brands fa-square-facebook icono" /> <p>@facebook</p>
       </div>
     </div>
   </section>

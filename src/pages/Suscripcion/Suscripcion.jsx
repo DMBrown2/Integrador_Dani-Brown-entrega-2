@@ -1,12 +1,9 @@
 import './Suscripcion.css'
-import Footer from '/src/components/layout/Footer/Footer'
-import Header from '/src/components/layout/Header/Header'
 
 
 export default  function Suscripcion() {
     return (
         <>
-            <Header />
             <main>
                 <div className="titulo-form">
                     <h1>Inscribite a la comunidad</h1>
@@ -160,8 +157,6 @@ export default  function Suscripcion() {
                     </form>
                 </div>
             </main>
-
-            <Footer />
         </>
     )
 }

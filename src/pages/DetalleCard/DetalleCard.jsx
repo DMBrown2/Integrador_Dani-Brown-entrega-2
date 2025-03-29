@@ -1,12 +1,37 @@
 
+import { useParams } from 'react-router-dom'
 import './DetalleCard.css'
-import Header from '/src/components/layout/Header/Header'
-import Footer from '/src/components/layout/Footer/Footer'
+import { useEffect } from 'react'
+
 
 export default function DetalleCard() {
+ 
+ 
+  const { id } = useParams()
+
+  useEffect(() => {
+  getDetalleCard()
+
+ }, [])
+
+ const getDetalleCard = async () => {
+  try {
+    const response = await axios.get(`${env.URL}/tienda/${id}`)
+    setTimeout(() => {
+      setProduct(response.data)
+    }, 2000)
+    
+  } catch (error) {
+    console.log(error)
+    Swal.fire("Error")
+  }
+
+  
+
+
+
   return (
     <>
-      <Header />
       <div className="detalle-card1">
         <div className="contenedor-imagen">
           <img
@@ -41,7 +66,6 @@ export default function DetalleCard() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   )
-}
+}}

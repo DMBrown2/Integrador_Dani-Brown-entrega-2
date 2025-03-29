@@ -1,0 +1,19 @@
+.order-sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -410px;
+    width: 250px;
+    height: 100vh;
+    z-index: 1;
+    margin-top: 100px;
+    padding: 24px;
+    background-color: var(--lighter-color);
+    border-radius: 0 0 0 20px;
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease-in-out;
+
+    &.active {
+        right: 0;
+    }
+}

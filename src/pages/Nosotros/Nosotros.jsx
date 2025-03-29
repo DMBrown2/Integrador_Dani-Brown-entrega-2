@@ -1,12 +1,9 @@
 import './Nosotros.css'
-import Header from '/src/components/layout/Header/Header'
-import Footer from '/src/components/layout/Footer/Footer'
 
 
 export default function Nosotros() {
     return (
         <>
-            <Header />
             <section className="nosotros-container">
                 <div className="header-nosotros">
                     <div className="imagen-libro">
@@ -139,7 +136,6 @@ export default function Nosotros() {
                     </div>
                 </div>
             </section>
-            <Footer />
         </>
     )
 }

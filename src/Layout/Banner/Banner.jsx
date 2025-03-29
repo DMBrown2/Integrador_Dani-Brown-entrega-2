@@ -1,12 +1,9 @@
-import './Main.css';
-import Card from '/src/components/Card/Card';
+import './Banner.css'
 
-export default function Main() {
+export default function Banner() {
   return (
     <>
-      <main>
-        {/* SECCION BANNER  */}
-        <section className="section-banner">
+    <section className="section-banner">
           <div className="slider">
             {/* Seccion de inputs para slider */}
             {/* input:radio#slide-$*3 // mismo nombre para que cuando clickee uno se desclickee el otro */}
@@ -44,38 +41,6 @@ export default function Main() {
             </div>
           </div>
         </section>
-
-        <section className="product-gallery">
-          <h3 className="section-title">Destacados</h3>
-          <div className="product-container">
-            
-           <Card />
-
-            <div className="btn-vermas">
-              <button>Ver más</button>
-            </div>
-          </div>
-
-        </section>
-
-        {/* SECCION CARACTERISTICAS */}
-
-        <section className="caracteristicas">
-          <div className="caracteristica-1">
-            <i className="fa-solid fa-truck-fast icono" />
-            <p>Envios a todo el país</p>
-          </div>
-          <a className="caracteristica-2" href="/pages/suscripcion/suscripcion.html">
-            <i className="fa-solid fa-comments icono" />
-            <p>Comunidad: club de lectura y envios especiales</p>
-          </a>
-          <div className="caracteristica-3 icono">
-            <i className="fa-solid fa-hand-holding-dollar icono" />
-            <p>El mejor precio garantizado</p>
-          </div>
-        </section>
-
-      </main>
-    </>
+        </>
   )
 }
