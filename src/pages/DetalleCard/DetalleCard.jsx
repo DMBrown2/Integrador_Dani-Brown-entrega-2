@@ -1,32 +1,40 @@
-
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { env } from '../../config/env.config'
 import './DetalleCard.css'
-import { useEffect } from 'react'
+import Swal from 'sweetalert2'
+import { useOrder } from '../../context/OrderContext'
 
 
-export default function DetalleCard() {
+export default function DetalleCard({producto}) {
+ const [ product, setProduct] = useState(null)
+ const {addToCart} = useOrder()
  
  
   const { id } = useParams()
 
+  // if(!id) {
+  //   return <h3>Cargando...</h3>
+  //   // <Navigate to='/' />
+  // }
+
   useEffect(() => {
   getDetalleCard()
-
  }, [])
 
- const getDetalleCard = async () => {
+ const getDetalleCard = async() => {
+
   try {
-    const response = await axios.get(`${env.URL}/tienda/${id}`)
-    setTimeout(() => {
-      setProduct(response.data)
-    }, 2000)
+    const response  = await axios.get(`${env.URL}/products/${id}`)
     
+    setProduct(response.data)
+
   } catch (error) {
     console.log(error)
     Swal.fire("Error")
   }
-
-  
+}
 
 
 
@@ -36,17 +44,17 @@ export default function DetalleCard() {
         <div className="contenedor-imagen">
           <img
             className="detalle-img"
-            src="/assets/images/cards/tiempo-entre-costuras.webp"
-            alt="El tiempo entre costuras"
+            src={product?.image}
+            alt={product?.title}
           />
           <div className="status">
-            <p>Nuevo!</p>
+            <p>{product?.category}</p>
           </div>
         </div>
         <div className="contenedor-info">
-          <div className="genero">Novela romántica</div>
-          <h1 className="titulo-detalle">El tiempo entre costuras</h1>
-          <h2 className="precio">$50.000</h2>
+          <div className="genero">{product?.genre}</div>
+          <h1 className="titulo-detalle">{product?.title}</h1>
+          <h2 className="precio">{product?.price}</h2>
           <p className="detalle-info">
             La joven modista Sira Quiroga abandona Madrid en los meses previos a la
             Guerra Civil Española, arrastrada por el amor desbocado hacia un hombre a
@@ -62,10 +70,10 @@ export default function DetalleCard() {
             <option value={5}>5</option>
           </select>
           <div className="btn-comprar">
-            <button>Comprar</button>
+            <button onClick={() => addToCart(producto)}>Comprar</button>
           </div>
         </div>
       </div>
     </>
   )
-}}
+}

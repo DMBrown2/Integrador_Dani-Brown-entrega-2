@@ -2,7 +2,7 @@ import React from 'react'
 import Banner from '../../Layout/Banner/Banner'
 import Caracteristicas from '../../Layout/Caracteristicas/Caracteristicas'
 import ProductContainer from '../../components/ProductsContainer/ProductContainer'
-import OrderSidebar from '../../Layout/OrderSideBar/OrderSideBar'
+import OrderModal from '../../Layout/OrderModal/OrderModal'
 
 
 export default function Inicio() {
@@ -11,7 +11,8 @@ export default function Inicio() {
       <Banner />
       <ProductContainer />
       <Caracteristicas />
-      <OrderSidebar />
+      <OrderModal />
+
 
     </>
   )

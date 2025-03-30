@@ -1,7 +1,9 @@
 .order-container {
-    font: var(--font) 400 16px;
+    font: var(--font);
+    font-size: 12px;
     color: var(--color-terciario);
     background-color: var(--lighter-color);
+    padding: 8px;
 
 .order-table {
     width: 100%;
@@ -9,14 +11,33 @@
     border-collapse: collapse;
     margin: 0 auto;
 
+    .btn-increase, .btn-decrease {
+        background-color: var(--lighter-color);
+        color: var(--color-secundario);
+        border: none;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        height: 100%;
+
+        &:hover {
+            background-color: var(--color-secundario);
+            color: var(--color-primario);
+        }
+    }
+
+    .cantidad {
+        display: flex;
+    }
+
     td,
     th {
         padding: 10px;
         text-align: left;
         border-bottom: 1px solid var(--light-color);
-
-
-
     }
 
     tbody {
@@ -36,5 +57,26 @@
             }
         }
     }
+}
+.order-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+
+    .button {
+        background-color: var(--color-primario);
+        color: var(--color-secundario);
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: var(--color-secundario);
+            color: var(--color-primario);
+        }
+}
 }
 }

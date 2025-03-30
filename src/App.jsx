@@ -25,7 +25,7 @@ function App() {
           <Route path="/suscripcion" element={<Suscripcion />} />
           <Route path="/nosotros" element={<Nosotros />} />
 
-          <Route path='/productos/:id' element={<DetalleCard />} />
+          <Route path='/products/:id' element={<DetalleCard />} />
           <Route path="/order" element={<Order />} />
           <Route path="/admin" element={<Admin />} />
           {/* <Route path="/admin-product"

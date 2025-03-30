@@ -1,7 +1,7 @@
 import { useOrder } from "../../context/OrderContext";
 import "./Order.css";
 
-export default function Order() {
+export default function Order({decreaseQuantity}) {
 
     const { cart, total } = useOrder()
 
@@ -11,7 +11,7 @@ export default function Order() {
                 <table className="order-table">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>IMAGEN</th>
                             <th>Titulo</th>
                             <th>Precio</th>
                             <th>Cantidad</th>
@@ -23,10 +23,16 @@ export default function Order() {
                             cart.map(product => (
                                 <tr key={product.id}>
 
-                                    <td>{product.id}</td>
+                                    <td>IMAGEN</td>
                                     <td>{product.title}</td>
                                     <td>{product.price}</td>
+                                    <div className="cantidad">
+                                    <button className="btn-increase" onClick={ () => decreaseQuantity(product.id)
+                                    }>−</button>
                                     <td>{product.quantity}</td>
+                                    <button className="	btn-decrease" onClick={ () => decreaseQuantity(product.id)
+                                    }>+</button>
+                                    </div>
                                     <td>{product.quantity * product.price}</td>
 
                                 </tr>

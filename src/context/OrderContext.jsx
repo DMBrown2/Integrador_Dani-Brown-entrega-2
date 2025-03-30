@@ -6,12 +6,11 @@ export const useOrder = () => useContext(OrderContext);
 
 
 function OrderProvider({ children }) {
-    const [isOpen, setIsOpen] = useState(false); //Sirve para mostrar o no el modal/side bar.
+    const [isOpen, setIsOpen] = useState(false)
+    const [ count, setCount ] = useState(0)
+    const [ total, setTotal ]   = useState(0) 
     
-    const [ count, setCount ] = useState(0) // Me va a servir para mostrar la cantidad de productos en el carrito
-    const [ total, setTotal ]   = useState(0) // Me va a servir para mostrar el total de la compra
-    
-    const [cart, setCart] = useState([]); //array de productos que se van a agregar al carrito.
+    const [cart, setCart] = useState([])
 
     useEffect(() => {
       let contador = 0
@@ -51,19 +50,33 @@ function OrderProvider({ children }) {
         // Otra forma, seria generar una shallow copy del array, buscar el indice de mi post y eliminarlo con splice
   
 
-  // function decreaseQuantity(id) {
-    // Busco el post con find a partir de su id, y le decremento la cantidad en 1, dado el caso que el post tuviese solo 1 unidad, lo elimino del carrito
+  function decreaseQuantity(product) {
+    console.log("ejecutando func decrementar cantidad")
+// Busco el post con find a partir de su id:
+const productInCart = cart.find((item) => item.id === product.id)
+   //si hay 1 o mas productos en el carrito, le resto 1 a la cantidad de ese producto:
+if (productInCart.quantity > 1) {
+    productInCart.quantity -= 1
+    setCart([...cart])
+  }
+  //si la cantidad de ese producto es 0, lo elimino del carrito:
+  if (productInCart.quantity === 0) {
+    const newCart = cart.filter((item) => item.id !== product.id)
+    setCart(newCart)
+  } 
+}
  
   
 
   return  (
   <OrderContext.Provider 
   value={{ cart,  //array de prod.
-  toggleCart, //funcion para abrir y cerrar el modal/side bar.
+  toggleCart, //funcion para abrir y cerrar el modal.
   isOpen, //estado del carrito.
   addToCart,
   count, //cantidad de productos en el carrito.
-  total, //total de la compra. 
+  total, //total de la compra.
+  decreaseQuantity, //disminuir cantidad de productos en el carrito. 
    }}>
     {children}
     </OrderContext.Provider> 

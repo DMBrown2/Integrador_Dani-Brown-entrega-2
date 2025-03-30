@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCodeCompare, faHeart, faMagnifyingGlass, faStar } from '@fortawesome/free-solid-svg-icons'
 import './ProductCard.css'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useOrder } from '../../context/OrderContext'
 
 export default function Card({product}) {
@@ -20,7 +20,7 @@ export default function Card({product}) {
                   className="card-image"
                 />
                 <div className="card-status">
-                  <p>{product.status}</p>
+                  <p>{product.category}</p>
                 </div>
                 <div className="card-icon-container">
                   <div className="icon">
@@ -30,11 +30,11 @@ export default function Card({product}) {
                     <FontAwesomeIcon icon={faCodeCompare} className="compare" />
                   </div>
                   <div className="icon">
-                    <NavLink to={`product/${product.id}`} className="link" target='_blank' title="Ver detalle">
+                    <Link to={`products/${product.id}`} className="link" target='_blank' title="Ver detalle">
 
                     <FontAwesomeIcon icon={faMagnifyingGlass} className="magnifying-glass" />
 
-                    </NavLink>
+                    </Link>
          
                   </div>
                 </div>
@@ -48,7 +48,7 @@ export default function Card({product}) {
                 {/* GÉNERO */}
                 <h4 className="genero"> {product.genre} </h4>
                 {/* TITULO DEL LIBRO */}
-                <h4 className="titulo-libro">El tiempo entre costuras</h4>
+                <h4 className="titulo-libro">{product.title}</h4>
                 {/* Seccion de valoraciones */}
                 <div className="card-rate">
                   <div className="icon-rate">

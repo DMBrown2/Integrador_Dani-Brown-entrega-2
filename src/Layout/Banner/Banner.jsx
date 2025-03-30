@@ -1,4 +1,5 @@
 import './Banner.css'
+import libros from '../../assets/images/header/header.png' 
 
 export default function Banner() {
   return (
@@ -20,8 +21,7 @@ export default function Banner() {
             <div className="slider-content">
               <div className="slide slide-1">
                 <img
-                  src="/assets/images/header/header.png"
-                  alt="varios libros"
+                  src={libros}
                   className="varios-libros"
                 />
               </div>

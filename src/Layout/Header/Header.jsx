@@ -33,7 +33,7 @@ export default function Header() {
       <div className="user-cart" onClick={ () => toggleCart() }>
       
       <FontAwesomeIcon icon={faCartShopping} className="cart-icon" /> 
-      <div className="cart-count">{count}</div>
+      <span className="cart-count">{count}</span>
       
       </div>
 
