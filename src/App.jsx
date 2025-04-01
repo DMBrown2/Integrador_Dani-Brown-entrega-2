@@ -7,6 +7,7 @@ import Nosotros from './pages/Nosotros/Nosotros';
 import Suscripcion from './pages/Suscripcion/Suscripcion';
 import Order from './pages/Order/Order';
 import DetalleCard from './pages/DetalleCard/DetalleCard';
+import Usuarios from './pages/Usuarios/Usuarios';
 // import AdminGuard from './utils./guard/AdminGuard';
 
 
@@ -30,6 +31,7 @@ function App() {
           <Route path='/products/:id' element={<DetalleCard />} />
           <Route path="/order" element={<Order />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path='/usuarios' element={<Usuarios />}/>
           {/* <Route path="/admin-product"
             element={
               <AdminGuard>

@@ -64,6 +64,9 @@ export default function Header() {
         <li className="nav-item">
         <NavLink to="/nosotros" className="nav-link">Nosotros</NavLink>
         </li>
+        <li className="nav-item">
+        <NavLink to="/usuarios" className="nav-link">Usuarios</NavLink>
+        </li>
       </ul>
     </nav>
   </div>

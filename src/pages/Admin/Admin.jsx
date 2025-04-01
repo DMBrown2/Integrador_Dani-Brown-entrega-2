@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 
+const URL = import.meta.env.VITE_API_URL
 
 export default function Admin() {
 
@@ -40,20 +41,22 @@ export default function Admin() {
 
     // Hacer Scroll al formulario
     document
-      .getElementById("formulario")
+      .getElementById("titulo")
       .scrollIntoView({ behavior: "smooth" });
-  }, [editProduct])
+  }, [editProduct, setValue, reset])
 
   async function updateProduct(producto) {
+    if (!producto || !producto.id) {
+        console.error("❌ Error: El producto no tiene un ID válido", producto);
+        return;
+    } 
     setEditProduct(producto);
   }
 
-  console.log("Creando componente App")
     async function loadProducts() {
         try {
             const response = await axios.get(`${URL}/products`)
             setProducts(response.data)
-            console.log(response)
 
         } catch (error) {
             console.log(error)
@@ -63,8 +66,14 @@ export default function Admin() {
     async function onSubmit(data) {
         try {
 
-            if (editProduct) {
+            if (editProduct && editProduct.id) {
+                
                 const id = editProduct.id;
+
+                // if (!editProduct || !editProduct.id) {
+                //     console.error("❌ Error: editProduct no tiene un ID válido", editProduct);
+                //     return;
+                // }
 
                 const productToUpdate = {
                     image: data.image,
@@ -75,8 +84,8 @@ export default function Admin() {
                     description: data.description,
                 }
 
-                const response = await axios.put(`${URL}/products/${id}`, productToUpdate)
 
+                const response = await axios.put(`${URL}/products/${id}`, productToUpdate)
                 console.log(response.data)
 
                 //Actualizar el estado de los productos.
@@ -92,6 +101,7 @@ export default function Admin() {
                     "El prod fue editado correctamente",
                     "success"
                 )
+
             } else {
                 const newProduct = {
                     image: data.image,
@@ -112,8 +122,8 @@ export default function Admin() {
                 reset()
 
                 Swal.fire(
-                    "Post creado!",
-                    "El post fue creado correctamente",
+                    "Producto nuevo creado!",
+                    "El producto fue creado correctamente",
                     "success"
                   );
                 }
@@ -132,7 +142,7 @@ export default function Admin() {
             try {
               Swal.fire({
                 title: "¿Estás seguro?",
-                text: "No podrás recuperar este post!",
+                text: "No podrás recuperar este producto!",
                 icon: "warning",
                 draggable: true,
                 showCancelButton: true,
@@ -150,8 +160,8 @@ export default function Admin() {
                   );
                   setProducts(produtcsWithoutDeletedProduct);
                   Swal.fire(
-                    "Post borrado!",
-                    "El post fue borrado correctamente",
+                    "Producto borrado!",
+                    "El producto fue borrado correctamente",
                     "success"
                   );
                 }
@@ -160,7 +170,7 @@ export default function Admin() {
               // }
             } catch (error) {
               console.log(error);
-              alert("No se pudo borrar el post");
+              alert("No se pudo borrar el producto");
             }
         }
          
@@ -179,7 +189,6 @@ export default function Admin() {
                         <form
                             action=""
                             className="admin-form"
-                            id='formulario'
                             onSubmit={handleSubmit(onSubmit)}>
 
                             <div className="input-imagen">
@@ -188,7 +197,7 @@ export default function Admin() {
                             </div>
 
                             <div className="input-group">
-                                <label htmlFor="">Título: </label>
+                                <label htmlFor="" id='titulo'>Título: </label>
                                 <input
                                     type="text"
                                     {...register('title', {
@@ -231,10 +240,10 @@ export default function Admin() {
                                     <option value="" disabled>
                                         Selecciona una categoria
                                     </option>
-                                    <option value="1">Nuevo</option>
-                                    <option value="2">Best Seller!</option>
-                                    <option value="3">Niños</option>
-                                    <option value="4">Clásico</option>
+                                    <option value="Nuevo">Nuevo</option>
+                                    <option value="Best Seller!">Best Seller!</option>
+                                    <option value="Ninos">Niños</option>
+                                    <option value="Clasico">Clásico</option>
                                 </select>
                                 {errors.category && (
                                     <span className="input-error">
@@ -319,6 +328,7 @@ export default function Admin() {
                                 <tr key={producto.id}>
                                     <td className="image-cell">
                                         <img
+                                        src={producto.image}
                                             className="table-image"
                                         />
                                     </td>
@@ -331,7 +341,7 @@ export default function Admin() {
                                     </td>
                                     <td className="tools-cell">
                                         <div className="icon-container">
-                                            <button onClick={() => updateProduct(producto.id)} className="btn">
+                                            <button onClick={() => updateProduct(producto)} className="btn">
                                                 <FontAwesomeIcon icon={faEdit} />
                                             </button>
                                             <button onClick={() => deleteProduct(producto.id)} className="btn">

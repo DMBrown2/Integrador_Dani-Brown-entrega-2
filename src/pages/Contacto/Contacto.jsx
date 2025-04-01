@@ -1,41 +1,31 @@
 import { useForm } from 'react-hook-form';
 import './Contacto.css';
-// import { useState, UserProvider } from "react";
-// import { userContext } from "../../context/UserContext"
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
+import axios from "axios";
+
+const URL = import.meta.env.VITE_API_URL
 
 export default function Contacto() {
-  // const { agregarUsuario } = UserProvider(userContext);
-  // const [nombre, setNombre] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [mensaje, setMensaje] = useState("");
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   if (!nombre || !email || !mensaje) {
-  //     Swal.fire({ icon: "error", title: "Oops...", text: "Todos los campos son obligatorios" });
-  //     return;
-  //   }
-
-  //   const success = await agregarUsuario({ nombre, email, mensaje });
-
-  //   if (success) {
-  //     Swal.fire({ icon: "success", title: "¡Usuario creado!", text: "Los datos se enviaron correctamente" });
-  //     setNombre("");
-  //     setEmail("");
-  //     setMensaje("");
-  //   } else {
-  //     Swal.fire({ icon: "error", title: "Error", text: "Hubo un problema al registrar el usuario" });
-  //   }
- 
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid }
-  } = useForm()
+    formState: { errors, isValid },
+    reset,
+  } = useForm({ mode: "onChange" });
 
+  const onSubmit = async (data) => {
+    try {
+      await axios.post(URL, data);
+      Swal.fire("¡Enviado!", "Tu mensaje fue registrado correctamente.", "success");
+      reset();
+    } catch (error) {
+      console.log(error)
+      Swal.fire("Error", "Hubo un problema al enviar el mensaje.", "error");
+    }
+  };
+
+ 
   return (
     <>
       <section className="section-contacto">
@@ -43,7 +33,7 @@ export default function Contacto() {
           <h1>Contactate con nosotros</h1>
         </div>
         <div className="form-container">
-          <form className="form" onSubmit={handleSubmit((data) => console.log(data))}>
+          <form className="form" onSubmit={handleSubmit(onSubmit)}>
             <div className="input-group">
               <div className="input-nombre">
                 <label htmlFor="NOMBRE"> Nombre y Apellido:</label>
@@ -63,9 +53,7 @@ export default function Contacto() {
                     minLength: { value: 3, message: 'Min length is 3' },
                   })}
                 />
-                {errors.name && (
-                  <span className="input-error">{errors.name?.message}</span>
-                )}
+                 {errors.nombre && <span>{errors.nombre.message}</span>}
               </div>
 
 
@@ -87,9 +75,7 @@ export default function Contacto() {
                     minLength: { value: 3, message: 'Min length is 3' },
                   })}
                 />
-                {errors.email && (
-                  <span className="input-error">{errors.email?.message}</span>
-                )}
+             {errors.mensaje && <span>{errors.mensaje.message}</span>}
               </div>
 
 

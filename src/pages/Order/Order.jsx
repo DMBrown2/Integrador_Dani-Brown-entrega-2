@@ -1,13 +1,17 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useOrder } from "../../context/OrderContext";
 import "./Order.css";
+import { faRemove } from "@fortawesome/free-solid-svg-icons";
 
-export default function Order({decreaseQuantity}) {
+export default function Order() {
 
-    const { cart, total } = useOrder()
+    const { cart, total, decreaseQuantity, addToCart, updateQuantity, removeFromCart, handleClearCart } = useOrder()
 
     return (
         <>
             <div className="order-container">
+
+                <div className="order-wrapper">
                 <table className="order-table">
                     <thead>
                         <tr>
@@ -23,17 +27,36 @@ export default function Order({decreaseQuantity}) {
                             cart.map(product => (
                                 <tr key={product.id}>
 
-                                    <td><img src={product.image} alt={product.title} style={{ width: "80px", height: "100%", objectFit: "cover" }}/></td>
+                                    <td><img src={product.image} alt={product.title} style={{ width: "80px", height: "100%", objectFit: "cover" }} /></td>
+
                                     <td>{product.title}</td>
+                                    
                                     <td>${product.price}</td>
-                                    <div className="cantidad">
-                                    <button className="btn-increase" onClick={ () => decreaseQuantity(product.id)
-                                    }>−</button>
-                                    <td>{product.quantity}</td>
-                                    <button className="	btn-decrease" onClick={ () => decreaseQuantity(product.id)
-                                    }>+</button>
-                                    </div>
+
+
+                                    <td>
+                                        <div className="cantidad">
+                                        <button className="btn-increase" onClick={() => decreaseQuantity(product)
+                                        }>−</button>
+                                        <input 
+                                        type="text"
+                                        value={product.quantity}
+                                        min="1"
+                                        onChange={(e) => updateQuantity(product, e.target.value)}
+                                         />
+                                        <button className="	btn-decrease" onClick={() => addToCart(product, false)
+                                        }>+</button>
+                                        </div>
+                                    </td>
+
+
                                     <td>${product.quantity * product.price}</td>
+
+                                    <td>
+                                        <button className="btn-remove" onClick={() => removeFromCart(product.id)}>
+                                        <FontAwesomeIcon icon={faRemove} />
+                                        </button>
+                                    </td>
 
                                 </tr>
                             ))
@@ -46,10 +69,11 @@ export default function Order({decreaseQuantity}) {
                         </tr>
                     </tfoot>
                 </table>
+                </div>
 
                 <div className="order-buttons">
                     <button className="button">Finalizar compra</button>
-                    <button className="button">Vaciar carrito</button>
+                    <button className="button" onClick={handleClearCart}>Vaciar carrito</button>
                 </div>
             </div>
         </>

@@ -7,7 +7,7 @@ import Swal from 'sweetalert2'
 import { useOrder } from '../../context/OrderContext'
 
 
-export default function DetalleCard({producto}) {
+export default function DetalleCard() {
  const [ product, setProduct] = useState(null)
  const {addToCart} = useOrder()
  
@@ -51,7 +51,7 @@ export default function DetalleCard({producto}) {
         <div className="contenedor-info">
           <div className="genero">{product?.genre}</div>
           <h1 className="titulo-detalle">{product?.title}</h1>
-          <h2 className="precio">{product?.price}</h2>
+          <h2 className="precio">${product?.price}</h2>
           <p className="detalle-info">
             La joven modista Sira Quiroga abandona Madrid en los meses previos a la
             Guerra Civil Española, arrastrada por el amor desbocado hacia un hombre a
@@ -67,7 +67,7 @@ export default function DetalleCard({producto}) {
             <option value={5}>5</option>
           </select>
           <div className="btn-comprar">
-            <button onClick={() => addToCart(producto)}>Comprar</button>
+            <button onClick={() => addToCart(product)}>Agregar al carrito</button>
           </div>
         </div>
       </div>
