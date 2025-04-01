@@ -18,7 +18,7 @@ export default  function Suscripcion() {
                                     name="nombre"
                                     id="NOMBRE"
                                     placeholder="Nombre y Apellido"
-                                    required=""
+                                    required
                                     minLength={4}
                                     maxLength={120}
                                     pattern="^[a-zA-Z ]+$"
@@ -32,7 +32,7 @@ export default  function Suscripcion() {
                                     name="email"
                                     id="correo"
                                     placeholder="email"
-                                    required=""
+                                    required
                                     minLength={6}
                                     maxLength={150}
                                     pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$"

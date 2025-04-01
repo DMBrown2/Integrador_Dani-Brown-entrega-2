@@ -11,7 +11,6 @@ export default function DetalleCard({producto}) {
  const [ product, setProduct] = useState(null)
  const {addToCart} = useOrder()
  
- 
   const { id } = useParams()
 
   // if(!id) {
@@ -35,8 +34,6 @@ export default function DetalleCard({producto}) {
     Swal.fire("Error")
   }
 }
-
-
 
   return (
     <>

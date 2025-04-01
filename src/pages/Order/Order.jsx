@@ -23,9 +23,9 @@ export default function Order({decreaseQuantity}) {
                             cart.map(product => (
                                 <tr key={product.id}>
 
-                                    <td>IMAGEN</td>
+                                    <td><img src={product.image} alt={product.title} style={{ width: "80px", height: "100%", objectFit: "cover" }}/></td>
                                     <td>{product.title}</td>
-                                    <td>{product.price}</td>
+                                    <td>${product.price}</td>
                                     <div className="cantidad">
                                     <button className="btn-increase" onClick={ () => decreaseQuantity(product.id)
                                     }>−</button>
@@ -33,7 +33,7 @@ export default function Order({decreaseQuantity}) {
                                     <button className="	btn-decrease" onClick={ () => decreaseQuantity(product.id)
                                     }>+</button>
                                     </div>
-                                    <td>{product.quantity * product.price}</td>
+                                    <td>${product.quantity * product.price}</td>
 
                                 </tr>
                             ))
@@ -42,7 +42,7 @@ export default function Order({decreaseQuantity}) {
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colSpan={5}>TOTAL $ {total}</td>
+                            <td colSpan={5}>TOTAL ${total}</td>
                         </tr>
                     </tfoot>
                 </table>

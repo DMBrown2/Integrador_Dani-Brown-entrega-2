@@ -16,7 +16,7 @@ export default function Card({product}) {
                 {/* Imagen+STATUS+ICONOS+BOTON */}
                 <img
                   src={product.image}
-                  alt="tiempo-entre-costuras"
+                  alt={product.title}
                   className="card-image"
                 />
                 <div className="card-status">

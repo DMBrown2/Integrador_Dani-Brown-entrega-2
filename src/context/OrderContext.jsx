@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 const OrderContext = createContext();
 export const useOrder = () => useContext(OrderContext);
@@ -31,7 +32,7 @@ function OrderProvider({ children }) {
     setIsOpen(!isOpen)
   }
 
-  function addToCart(product) {
+  function addToCart(product, showAlert=true) {
     const productInCart = cart.find((item) => item.id === product.id)
     
     if (!productInCart) {
@@ -41,6 +42,18 @@ function OrderProvider({ children }) {
     } else {
       productInCart.quantity += 1
       setCart([...cart])
+    }
+
+    if(showAlert) {
+      Swal.fire({
+        title: "Producto agregado con éxito!",
+        text: `${product.title} se agregó al carrito`,
+        icon: "success",
+        toast: true,
+        position: "top-end",
+        timer: 1500,
+        showConfirmButton: false,
+      })
     }
   }
 
