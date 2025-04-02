@@ -15,10 +15,15 @@ export default function Contacto() {
   } = useForm({ mode: "onChange" });
 
   const onSubmit = async (data) => {
+    console.log("Enviando datos a MockAPI:", data)
+    
     try {
-      await axios.post(URL, data);
+     await axios.post(`${URL}/users`, data);
+
       Swal.fire("¡Enviado!", "Tu mensaje fue registrado correctamente.", "success");
+      
       reset();
+
     } catch (error) {
       console.log(error)
       Swal.fire("Error", "Hubo un problema al enviar el mensaje.", "error");
@@ -43,7 +48,7 @@ export default function Contacto() {
                   id="nombre"
                   placeholder="Nombre y Apellido"
                   pattern="^[a-zA-Z ]+$"
-                  autoComplete
+                  autoComplete="on"
                   {...register('nombre', {
                     required: {
                       value: true,
@@ -65,7 +70,7 @@ export default function Contacto() {
                   id="email"
                   placeholder="email"
                   pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$"
-                  autoComplete
+                  autoComplete="on"
                   {...register('email', {
                     required: {
                       value: true,
@@ -75,7 +80,7 @@ export default function Contacto() {
                     minLength: { value: 3, message: 'Min length is 3' },
                   })}
                 />
-             {errors.mensaje && <span>{errors.mensaje.message}</span>}
+
               </div>
 
 
@@ -86,12 +91,18 @@ export default function Contacto() {
                   name="mensaje"
                   id="mensaje"
                   rows={5}
-                  required=""
-                  minLength={6}
-                  maxLength={150}
                   pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$"
                   defaultValue={"                    "}
+                  {...register('mensaje', {
+                    required: {
+                      value: true,
+                      message: 'Campo requerido',
+                    },
+                    minLength: { value: 6, message: 'Debe tener al menos 6 caracteres' },
+                    maxLength: { value: 150, message: 'Máximo 150 caracteres' },
+                  })}
                 />
+                {errors.mensaje && <span>{errors.mensaje.message}</span>}
               </div>
 
               <div className="btn-contactar">

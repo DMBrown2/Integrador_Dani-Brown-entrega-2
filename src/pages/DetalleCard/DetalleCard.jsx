@@ -1,15 +1,17 @@
+import { useOrder } from '../../context/OrderContext'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { env } from '../../config/env.config'
 import './DetalleCard.css'
 import Swal from 'sweetalert2'
-import { useOrder } from '../../context/OrderContext'
 
 
 export default function DetalleCard() {
+  
  const [ product, setProduct] = useState(null)
  const {addToCart} = useOrder()
+
  
   const { id } = useParams()
 

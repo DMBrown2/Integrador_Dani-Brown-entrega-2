@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useOrder } from "../../context/OrderContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Order.css";
 import { faRemove } from "@fortawesome/free-solid-svg-icons";
 

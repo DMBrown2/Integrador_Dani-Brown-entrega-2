@@ -8,10 +8,12 @@ import Suscripcion from './pages/Suscripcion/Suscripcion';
 import Order from './pages/Order/Order';
 import DetalleCard from './pages/DetalleCard/DetalleCard';
 import Usuarios from './pages/Usuarios/Usuarios';
+import OrderModal from './Layout/OrderModal/OrderModal';
 // import AdminGuard from './utils./guard/AdminGuard';
 
 
 function App() {
+
 
 
   return (
@@ -32,15 +34,6 @@ function App() {
           <Route path="/order" element={<Order />} />
           <Route path="/admin" element={<Admin />} />
           <Route path='/usuarios' element={<Usuarios />}/>
-          {/* <Route path="/admin-product"
-            element={
-              <AdminGuard>
-
-                <Admin />
-
-              </AdminGuard>
-            }
-          /> */}
           
           <Route path="*" element={<h1>404</h1>} />
 

@@ -58,9 +58,9 @@ export default function Header() {
         <li className="nav-item">
         <NavLink to='/admin' className="nav-link">Admin</NavLink>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
         <NavLink to="/suscripcion" className="nav-link">Me quiero subscribir!</NavLink>
-        </li>
+        </li> */}
         <li className="nav-item">
         <NavLink to="/nosotros" className="nav-link">Nosotros</NavLink>
         </li>
